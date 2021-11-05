@@ -1,0 +1,62 @@
+Body  
+{  
+background-color: rgb(182, 167, 167);
+margin:0;
+padding:0;
+} 
+
+.navbar {
+  overflow: hidden;
+  background:linear-gradient(#E5C1CD,rgb(182, 167, 167)) ;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #583148;
+  text-align: center;
+  padding: 15px 18px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar a:hover {
+  color: #1c87c9;
+}
+
+.box{
+    width: 44%;
+    height: 100%;
+    float: left;
+}
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .formspace p1 {
+    font-family: "Cursive", Lucida Handwriting;
+    font-size: 25px;
+    color: rgb(83, 64, 79);
+  }
+.formspace form{
+    font-family: "Fantasy", "Papyrus";
+    font-size:20px;
+    font-weight: 700;
+    color: rgb(83, 64, 79);
+  }
+
+.formspace{
+    padding:30px;
+    width:470px;
+    height:570px;
+    margin-top:70px;
+    margin-right:130px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(255, 255, 255);
+    float:right;
+}
