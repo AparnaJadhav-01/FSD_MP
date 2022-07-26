@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+  <title> Ghardekho</title>
+</head>
+
+<body>  <section id="infinite" class="text-white tm-font-big tm-parallax">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
+    <div class="container">   
+      <div class="tm-next">
+          <a href="{% url 'apts:home' %}" class="navbar-brand"> <i class="fa fa-home" aria-hidden="true"></i>GHARDEKHO</a>
+      </div>             
+        
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars navbar-toggler-icon"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link tm-nav-link" href="listings/listingfun">View all listings</a>
+          </li>
+
+          {% if user.is_authenticated %}
+          <li><h2 style="font-size: 25px;color: blue;">Hello, {{user.first_name}} </h2></li>
+          <li><a class="nav-link tm-nav-link" href="accounts/logout">Logout</a></li>
+          <li><a class="nav-link tm-nav-link" href="{% url 'apts:dirfav' %}">Favourites</a></li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link tm-nav-link" href="accounts/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link tm-nav-link" href="accounts/register">Register</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link tm-nav-link" href="#gallery"><i class="fa fa-mobile" aria-hidden="true"></i> Contact us: 0000011111</a>
+      </li>
+        </ul>
+      </div>        
+    </div>
+  </nav>
+
+
+
+
+
+<section id="showcase-inner" class="py-5" style='color: blue;'>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">{{ listing.title }}</h1>
+            <p class="lead">
+              <i class="fas fa-map-marker"></i> {{ listing.address }}</p>
+              <p class="lead">
+                <i class="fas fa-map-marker"></i> {{ listing.city }} , {{ listing.zipcode }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Listing -->
+  <section id="listing" class="py-4">
+    <div class="container">
+            <div class="row">
+        <div class="col-md-9">
+          <!-- Home Main Image -->
+          <img src="{{ listing.photo_main.url }}" alt="" class="img-main img-fluid mb-3">
+          <!-- Thumbnails -->
+          <div class="row mb-5 thumbs">
+            {% if listing.photo_1 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_1.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_1.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_2 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_2.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_2.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_3 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_3.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_3.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_4 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_4.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_4.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_5 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_5.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_5.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+            {% if listing.photo_6 %}
+            <div class="col-md-2">
+              <a href="{{ listing.photo_6.url }}" data-lightbox="home-images">
+                <img src="{{ listing.photo_6.url }}" alt="" class="img-fluid">
+              </a>
+            </div>
+            {% endif %}
+          </div>
+          <!-- Fields -->
+          <div class="row mb-5 fields">
+            <div class="col-md-6">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-money-bill-alt"></i> Asking Price:
+                  <span class="float-right">&#8377;{{ listing.price }}</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-bed"></i> Bedrooms:
+                  <span class="float-right">{{ listing.bedrooms }}</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-car"></i> Garage:
+                  <span class="float-right">{{ listing.park_lot }}
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-th-large"></i> Square Feet:
+                  <span class="float-right">{{ listing.sqft }}</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-square"></i> Furniture:
+                  <span class="float-right">{{ listing.is_furnished }}
+                  </span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  <i class="fas fa-calendar"></i> Listing Date:
+                  <span class="float-right">{{ listing.list_date }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="row mb-5">
+            <div class="col-md-12">
+            <p style="color:black"> {{ listing.description }}</p> 
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card mb-3">
+          </div>
+
+          <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
+          <br>
+          <div class="col-12" id="fav-section">
+           <form action="{% url 'apts:fav_post' id=listing.id %}" method="GET">
+            {% if is_fav %}
+            <button type="submit" name="post_id" value="{{ listing.id }}" class="btn btn-danger">Remove from favorites</button>
+            {% else %}
+            <button type="submit" name="post_id" value="{{ listing.id }}" class="btn btn-success">Add to favorites</button> 
+            {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry Modal -->
+  <div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="property_name" class="col-form-label" style="font-weight: bold;color: black;">Owner Name:</label>
+              <input type="text" name="listing" class="form-control" value="{{ listing.ownerName }}">
+            </div>
+            <div class="form-group">
+              <label for="name" class="col-form-label"style="font-weight: bold;color: black;">Owner Phone:</label>
+              <input type="text" name="name" class="form-control" value="{{ listing.ownerPh }}">
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-form-label"style="font-weight: bold;color: black;">Owner Information:</label>
+              <div class="input-group">
+                <textarea class="form-control" aria-label="With textarea">{{listing.ownerInfo}}</textarea>
+              </div>            </div>
+            <hr> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-1.9.1.min.js"></script>     
+  <script src="slick/slick.min.js"></script>
+  <script src="magnific-popup/jquery.magnific-popup.min.js"></script>
+  <script src="js/easing.min.js"></script>
+  <script src="js/jquery.singlePageNav.min.js"></script>     
+  <script src="js/bootstrap.min.js"></script> 
+  <script>
+
+    function getOffSet(){
+      var _offset = 450;
+      var windowHeight = window.innerHeight;
+
+      if(windowHeight > 500) {
+        _offset = 400;
+      } 
+      if(windowHeight > 680) {
+        _offset = 300
+      }
+      if(windowHeight > 830) {
+        _offset = 210;
+      }
+
+      return _offset;
+    }
+
+    function setParallaxPosition($doc, multiplier, $object){
+      var offset = getOffSet();
+      var from_top = $doc.scrollTop(),
+        bg_css = 'center ' +(multiplier * from_top - offset) + 'px';
+      $object.css({"background-position" : bg_css });
+    }
+
+    // Parallax function
+    // Adapted based on https://codepen.io/roborich/pen/wpAsm        
+    var background_image_parallax = function($object, multiplier, forceSet){
+      multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+      multiplier = 1 - multiplier;
+      var $doc = $(document);
+      // $object.css({"background-attatchment" : "fixed"});
+
+      if(forceSet) {
+        setParallaxPosition($doc, multiplier, $object);
+      } else {
+        $(window).scroll(function(){          
+          setParallaxPosition($doc, multiplier, $object);
+        });
+      }
+    };
+
+    var background_image_parallax_2 = function($object, multiplier){
+      multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+      multiplier = 1 - multiplier;
+      var $doc = $(document);
+      $object.css({"background-attachment" : "fixed"});
+      
+      $(window).scroll(function(){
+        if($(window).width() > 768) {
+          var firstTop = $object.offset().top,
+              pos = $(window).scrollTop(),
+              yPos = Math.round((multiplier * (firstTop - pos)) - 186);              
+
+          var bg_css = 'center ' + yPos + 'px';
+
+          $object.css({"background-position" : bg_css });
+        } else {
+          $object.css({"background-position" : "center" });
+        }
+      });
+    };
+    
+    $(function(){
+      // Hero Section - Background Parallax
+      background_image_parallax($(".tm-parallax"), 0.30, false);
+      background_image_parallax_2($("#contact"), 0.80);   
+      background_image_parallax_2($("#testimonials"), 0.80);   
+      
+      // Handle window resize
+      window.addEventListener('resize', function(){
+        background_image_parallax($(".tm-parallax"), 0.30, true);
+      }, true);
+
+      // Detect window scroll and update navbar
+      $(window).scroll(function(e){          
+        if($(document).scrollTop() > 120) {
+          $('.tm-navbar').addClass("scroll");
+        } else {
+          $('.tm-navbar').removeClass("scroll");
+        }
+      });
+      
+      // Close mobile menu after click 
+      $('#tmNav a').on('click', function(){
+        $('.navbar-collapse').removeClass('show'); 
+      })
+
+      // Scroll to corresponding section with animation
+      $('#tmNav').singlePageNav({
+        'easing': 'easeInOutExpo',
+        'speed': 600
+      });        
+      
+      // Add smooth scrolling to all links
+      // https://www.w3schools.com/howto/howto_css_smooth_scroll.asp
+      $("a").on('click', function(event) {
+        if (this.hash !== "") {
+          event.preventDefault();
+          var hash = this.hash;
+
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 600, 'easeInOutExpo', function(){
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+
+      // Pop up
+      $('.tm-gallery').magnificPopup({
+        delegate: 'a',
+        type: 'image',
+        gallery: { enabled: true }
+      });
+
+      $('.tm-testimonials-carousel').slick({
+        dots: true,
+        prevArrow: false,
+        nextArrow: false,
+        infinite: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2
+            }
+          }, 
+          {
+            breakpoint: 480,
+            settings: {
+                slidesToShow: 1
+            }                 
+          }
+        ]
+      });
+
+      // Gallery
+      $('.tm-gallery').slick({
+        dots: true,
+        infinite: false,
+        slidesToShow: 5,
+        slidesToScroll: 2,
+        responsive: [
+        {
+          breakpoint: 1199,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>

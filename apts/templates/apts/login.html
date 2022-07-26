@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<style>
+    * {
+font-family: Helvetica;
+font-weight: 400;
+font-size: 16px;
+color: #bdc3c7;
+}
+
+body {
+background-color: #502c2c;
+}
+
+.container {
+max-width: 400px;
+margin: 20px auto;
+}
+
+h2 {
+width: 100%;
+margin: 1em 0 .5em 1.2em;
+padding: 0;
+color: rgba(255,255,255,.2)
+}
+
+a {
+text-decoration: none;
+font-weight: 900;
+color: #ecf0f1;
+}
+
+a:hover {
+color: #bdc3c7;
+}
+
+.form {
+width: 100%;
+text-align: center;
+padding: 10px;
+border-radius: 5px;
+}
+
+input {
+margin: 0 0 .4em 0;
+width: 100%;
+height: 40px;
+border-radius: 5px;
+box-sizing: border-box;
+box-shadow: 1px 1px 1px rgba(0,0,0,.01);
+border: 0;
+border-bottom: 5px solid rgba(0,0,0,.12);
+line-height: 40px;
+}
+
+[type='text'] {
+padding-left: 1em;
+}
+
+[type='submit'] {
+color: white;
+background-color: #b92929;
+font-weight: 600;
+}
+
+[type='text']:focus {
+border: 0;
+border-bottom: 5px solid #b92929;
+color: #502c2c;
+outline: none;
+}
+</style>
+<body>
+    <h1 style="font-family: Papyrus, Fantasy, monospace; font-size: 40px; margin-left:620px; color: bisque;">Log-in</h1>
+    <div class="container">
+    <form action="login" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="username"><br>
+        <input type="password" name="password" placeholder="password"><br>
+        <input type="submit">
+    </form>
+</div>
+<div >{% for msg in messages %}
+    <p class="text-white-50" style="margin-left: 600px;">{{msg.message}}</p>
+{% endfor %} </div>
+</body>
+</html>
