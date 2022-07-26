@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome-5.5/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/css/home.css" />
+    <title>Document</title>
+</head>
+<body>
+
+   <section id="infinite" class="text-white tm-font-big tm-parallax">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">              
+      <div class="container">   
+        <div class="tm-next">
+            <a href="#infinite" class="navbar-brand"> <i class="fa fa-home" aria-hidden="true"></i> NAME HERE</a>
+        </div>             
+          
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars navbar-toggler-icon"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="listings/listingfun">View all listings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tm-nav-link" href="#testimonials">Buy real estate</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link tm-nav-link" href="accounts/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link tm-nav-link" href="accounts/register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link tm-nav-link" href="#gallery"><i class="fa fa-mobile" aria-hidden="true"></i> Contact us: 0000011111</a>
+        </li>
+          </ul>
+        </div>        
+      </div>
+    </nav>
+    
+
+                   <!-- Listings -->
+  <section id="listings" class="py-5">
+    <div class="container">
+      <h3 class="text-center mb-3">Latest Listings</h3>
+      <div class="row">
+        {% if filter %}
+          {% for apts in filter %}
+            <!-- Listing 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="card listing-preview">
+                <img class="card-img-top" src="{{ apts.photo_main.url }}" alt="">
+                <div class="card-img-overlay">
+                  <h2>
+                  </h2>
+                </div>
+                <div class="card-body">
+                  <div class="listing-heading text-center">
+                    <h4 class="text-primary">{{ apts.title }}</h4>
+                    <p>
+                      <i class="fas fa-map-marker text-secondary"></i> {{ apts.city }}, {{ apts.zipcode }}</p>
+                  </div>
+                  <hr>
+                   <div class="row py-2 text-secondary">
+                    <div class="col-6">
+                      <i class="fas fa-bed"></i> Bedrooms: {{ apts.bedrooms }}</div>
+                    <div class="col-6">
+                      <i class="fas fa-bath"></i> Bathrooms: {{ apts.bathrooms }}</div>
+                  </div>
+                  <hr>
+                  <div class="row text-secondary pb-2">
+                    <div class="col-9">
+                      <i class="fas fa-clock"></i> {{ apts.list_date | timesince }}</div>
+
+              </div>
+            </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+      <div class="col-md-12">
+        <p>No Listings Available</p>
+      </div>
+    {% endif %}
+
+  
+  </section>
+ 
+      <script src="js/jquery-1.9.1.min.js"></script>     
+      <script src="slick/slick.min.js"></script>
+      <script src="magnific-popup/jquery.magnific-popup.min.js"></script>
+      <script src="js/easing.min.js"></script>
+      <script src="js/jquery.singlePageNav.min.js"></script>     
+      <script src="js/bootstrap.min.js"></script> 
+      <script>
+  
+        function getOffSet(){
+          var _offset = 450;
+          var windowHeight = window.innerHeight;
+  
+          if(windowHeight > 500) {
+            _offset = 400;
+          } 
+          if(windowHeight > 680) {
+            _offset = 300
+          }
+          if(windowHeight > 830) {
+            _offset = 210;
+          }
+  
+          return _offset;
+        }
+  
+        function setParallaxPosition($doc, multiplier, $object){
+          var offset = getOffSet();
+          var from_top = $doc.scrollTop(),
+            bg_css = 'center ' +(multiplier * from_top - offset) + 'px';
+          $object.css({"background-position" : bg_css });
+        }
+  
+        // Parallax function
+        // Adapted based on https://codepen.io/roborich/pen/wpAsm        
+        var background_image_parallax = function($object, multiplier, forceSet){
+          multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+          multiplier = 1 - multiplier;
+          var $doc = $(document);
+          // $object.css({"background-attatchment" : "fixed"});
+  
+          if(forceSet) {
+            setParallaxPosition($doc, multiplier, $object);
+          } else {
+            $(window).scroll(function(){          
+              setParallaxPosition($doc, multiplier, $object);
+            });
+          }
+        };
+  
+        var background_image_parallax_2 = function($object, multiplier){
+          multiplier = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+          multiplier = 1 - multiplier;
+          var $doc = $(document);
+          $object.css({"background-attachment" : "fixed"});
+          
+          $(window).scroll(function(){
+            if($(window).width() > 768) {
+              var firstTop = $object.offset().top,
+                  pos = $(window).scrollTop(),
+                  yPos = Math.round((multiplier * (firstTop - pos)) - 186);              
+  
+              var bg_css = 'center ' + yPos + 'px';
+  
+              $object.css({"background-position" : bg_css });
+            } else {
+              $object.css({"background-position" : "center" });
+            }
+          });
+        };
+        
+        $(function(){
+          // Hero Section - Background Parallax
+          background_image_parallax($(".tm-parallax"), 0.30, false);
+          background_image_parallax_2($("#contact"), 0.80);   
+          background_image_parallax_2($("#testimonials"), 0.80);   
+          
+          // Handle window resize
+          window.addEventListener('resize', function(){
+            background_image_parallax($(".tm-parallax"), 0.30, true);
+          }, true);
+  
+          // Detect window scroll and update navbar
+          $(window).scroll(function(e){          
+            if($(document).scrollTop() > 120) {
+              $('.tm-navbar').addClass("scroll");
+            } else {
+              $('.tm-navbar').removeClass("scroll");
+            }
+          });
+          
+          // Close mobile menu after click 
+          $('#tmNav a').on('click', function(){
+            $('.navbar-collapse').removeClass('show'); 
+          })
+  
+          // Scroll to corresponding section with animation
+          $('#tmNav').singlePageNav({
+            'easing': 'easeInOutExpo',
+            'speed': 600
+          });        
+          
+          // Add smooth scrolling to all links
+          // https://www.w3schools.com/howto/howto_css_smooth_scroll.asp
+          $("a").on('click', function(event) {
+            if (this.hash !== "") {
+              event.preventDefault();
+              var hash = this.hash;
+  
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 600, 'easeInOutExpo', function(){
+                window.location.hash = hash;
+              });
+            } // End if
+          });
+  
+          // Pop up
+          $('.tm-gallery').magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            gallery: { enabled: true }
+          });
+  
+          $('.tm-testimonials-carousel').slick({
+            dots: true,
+            prevArrow: false,
+            nextArrow: false,
+            infinite: false,
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            responsive: [
+              {
+                breakpoint: 992,
+                settings: {
+                  slidesToShow: 2
+                }
+              },
+              {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 2
+                }
+              }, 
+              {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1
+                }                 
+              }
+            ]
+          });
+  
+          // Gallery
+          $('.tm-gallery').slick({
+            dots: true,
+            infinite: false,
+            slidesToShow: 5,
+            slidesToScroll: 2,
+            responsive: [
+            {
+              breakpoint: 1199,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 2
+              }
+            },
+            {
+              breakpoint: 991,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 2
+              }
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
+          });
+        });
+      </script>
+
+</body>
+</html>

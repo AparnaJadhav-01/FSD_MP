@@ -1,0 +1,237 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:100,300,400,500,700,900");
+
+body {
+	font-family: "Raleway", sans-serif;
+	font-size: 1.2em;
+  color: #707070;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+a {
+  transition: all 0.3s ease;
+  color:  #b68fb3;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #D40;
+}
+
+a:focus {
+  outline: none;
+}
+
+.btn {
+  padding: 8px 32px;
+}
+
+.btn:hover {
+  background-color: #ced4da;
+}
+
+blockquote {
+  font-size: 0.86em;
+  line-height: 1.8em;
+}
+
+.tm-section-pad-top {
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.tm-content-box {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.tm-text-primary {
+  color: #37A;
+}
+
+.tm-font-big {
+  font-size: 1.25rem;
+}
+
+.tm-btn-primary {
+  color: white;
+  background-color: #4e7277;
+  padding: 14px 30px;
+}
+
+.tm-btn-primary:hover,
+.tm-btn-primary:focus {
+  color: white;
+  background-color: #AAC9CE;
+}
+
+/* Navbar */
+
+.tm-navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.tm-navbar.scroll {
+  background-color: rgb(252, 217, 217);
+  border-bottom: 1px solid #e9ecef;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.navbar-brand:hover,
+.tm-navbar.scroll .navbar-brand:hover {
+  color:  #b68fb3;
+}
+
+.tm-navbar.scroll .navbar-brand {
+  color: #4e7277;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.tm-nav-link {
+  color: rgb(235, 121, 121);
+}
+
+.tm-navbar.scroll .tm-nav-link {
+  color: #4e7277;
+}
+
+.tm-navbar.scroll .tm-nav-link:hover,
+.tm-navbar.scroll .tm-nav-link.current,
+.tm-nav-link:hover {
+  color: #FFF;
+  background-color: #4e7277;
+}
+
+.navbar-toggler {
+  border: 1px solid rgb(235, 121, 121);
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.navbar-toggler-icon {
+  color: rgb(235, 121, 121);
+  padding-top: 6px;
+}
+
+.tm-navbar.scroll .navbar-toggler {
+  border: 1px solid #707070;
+}
+
+.tm-navbar.scroll .navbar-toggler-icon {
+  color: #707070;
+}
+
+/* Hero */
+
+#infinite {
+	background-color: #222;
+  background-image: url('../images/infinite-loop-01.jpg');
+  background-repeat: no-repeat;
+  height: 100vh;
+  min-height: 375px;
+  position: relative;
+}
+
+@media (min-height: 600px) and (min-width: 1920px) {
+  #infinite {
+    background-size: cover;
+  }
+}
+
+@media (min-height: 830px) {
+  #infinite {
+    background-position: center -210px;
+  }
+}
+
+@media (min-height: 680px) and (max-height: 829px) {
+  #infinite {
+    background-position: center -300px;
+  }
+}
+
+@media (min-height: 500px) and (max-height: 679px) {
+  #infinite {
+    background-position: center -400px;
+  }
+}
+
+@media (max-height: 499px) {
+  #infinite {
+    background-position: center -450px;
+  }
+}
+
+.tm-hero-text-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.tm-hero-text-container-inner {
+  margin-top: -90px;
+}
+
+.tm-hero-title {
+  font-size: 3.5rem;
+  text-shadow: 2px 2px 2px #333;
+}
+
+.tm-hero-subtitle {
+  text-shadow: 2px 2px 2px #333;
+}
+
+.tm-intro-next {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+}
+
+@media (max-height: 480px) {
+  .tm-hero-text-container-inner {
+    margin-top: -40px;
+  }
+
+  .tm-intro-next {
+    bottom: 20px;
+  }
+}
+/* Introduction */
+
+#introduction {
+  padding-bottom: 100px;
+}
+
+.tm-section-title {
+  font-size: 2.6rem;
+  font-weight: normal;
+}
+
+.tm-intro-text {
+  font-size: 1.2rem;
+}
+
+.tm-icon {
+  display: block;
+  color: #37A;
+}
+
+.tm-continue {
+	padding: 20px 0 30px 0;
+}
